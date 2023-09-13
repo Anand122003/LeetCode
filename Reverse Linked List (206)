@@ -1,3 +1,5 @@
+// ITERATIVE APPROACH
+
 class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
@@ -11,5 +13,26 @@ public:
         }
         // head=NULL hoga , current = NULL hoga is point pe 
         return previous;
+    }
+};
+
+
+
+
+// Recursive Approach
+
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+    // recursive approach
+       
+      if(head==NULL || head->next==NULL){
+          return head;
+      }
+      ListNode* newhead = reverseList(head->next);
+      head->next->next=head;
+       head->next=NULL;
+      return newhead;
+      
     }
 };
