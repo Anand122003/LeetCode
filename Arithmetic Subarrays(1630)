@@ -1,0 +1,29 @@
+class Solution {
+public:
+    vector<bool> checkArithmeticSubarrays(vector<int>& nums, vector<int>& l, vector<int>& r) {
+        int i,j,diff;
+        vector<bool> answerList;
+        vector<int> list;
+        bool flag=0;
+
+        for(i=0;i<r.size();i++){
+            flag=0;
+            list.clear();
+            for(j=l[i];j<=r[i];j++){
+                list.push_back(nums[j]);
+            }
+            sort(list.begin(),list.end());
+            diff=list[1]-list[0];
+            for(j=0;j<list.size()-1;j++){
+                if(diff !=(list[j+1]-list[j])){
+                   answerList.push_back(false);
+                   flag=1;
+                   break;
+                }
+            }
+            if(flag!=1)
+            answerList.push_back(true);
+        }
+        return answerList;
+    }
+};
