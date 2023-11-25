@@ -1,0 +1,19 @@
+class Solution {
+public:
+    vector<int> getSumAbsoluteDifferences(vector<int>& nums) {
+        int i,preSum=0,nextSum;
+        vector<int>answer;
+        for(i=0;i<nums.size();i++){
+            nextSum=nextSum+nums[i];
+        }
+        for(i=0;i<nums.size();i++){
+            // Sum of indices before current indices : preSum  
+            // Sum of indices remaining indices including current indices : nextSum
+            
+            answer.push_back( nextSum- ( (nums.size()-i) *nums[i] )  +  (nums[i]*i-preSum)   );
+            nextSum=nextSum-nums[i];
+            preSum=preSum+nums[i];
+        }
+        return answer;
+    }
+};
