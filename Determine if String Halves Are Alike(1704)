@@ -1,0 +1,21 @@
+class Solution {
+public:
+    bool halvesAreAlike(string s) {
+        int i,j,countLeft,countRight;
+        i=0;
+        j=s.size()-1;
+        countLeft=0;
+        countRight=0;
+        while(i<j){
+            if(tolower(s[i])=='a'|| tolower(s[i])=='e'||tolower(s[i])=='i'||tolower(s[i])=='o'||tolower(s[i])=='u')
+               countLeft++;
+            if(tolower(s[j])=='a'|| tolower(s[j])=='e'||tolower(s[j])=='i'||tolower(s[j])=='o'||tolower(s[j])=='u')
+               countRight++;        
+            i++;
+            j--;    
+        }
+        if(countLeft==countRight)
+           return true;
+        return false;
+    }
+};
