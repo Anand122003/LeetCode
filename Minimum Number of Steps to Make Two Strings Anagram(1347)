@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int minSteps(string s, string t) {
+        int i,count;
+        count=0;
+        vector<int> sArr(26,0);
+        vector<int> tArr(26,0);
+        for(i=0;i<s.size();i++){
+            sArr[s[i]-'a']+=1;
+            tArr[t[i]-'a']++;
+        }
+        for(i=0;i<26;i++){
+            if(sArr[i]!=tArr[i]){
+                count=count+abs(sArr[i]-tArr[i]);
+            }
+        }
+        return count/2;
+    }
+};
