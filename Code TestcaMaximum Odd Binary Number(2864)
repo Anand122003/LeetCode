@@ -1,0 +1,19 @@
+class Solution {
+public:
+    string maximumOddBinaryNumber(string s) {
+        int i=0,count=0;
+        string answer="1";
+        while(i!=s.size()){
+            if(s[i]=='1')
+               count++;
+            else
+               answer='0'+answer;
+            i++;
+        }
+        while(count>1){
+            answer='1'+answer;
+            count--;
+        }
+        return answer;
+    }
+};
