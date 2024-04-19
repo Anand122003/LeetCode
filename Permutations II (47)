@@ -1,0 +1,29 @@
+class Solution {
+public:
+    vector<vector<int>> find(vector<int>& nums,vector<vector<int>> &ans,int i){
+        // base condition
+        if(i==nums.size()){
+            ans.push_back(nums);
+            return ans;
+        }
+        unordered_set<int> seen;
+        for(int j=i;j<nums.size();j++){
+           if(seen.count(nums[j])) 
+           continue;
+            seen.insert(nums[j]);
+                swap(nums[i],nums[j]);
+                find(nums,ans,i+1);
+                swap(nums[i],nums[j]);
+            
+            
+        
+        }
+        return ans;
+    }
+
+    vector<vector<int>> permuteUnique(vector<int>& nums) {
+        sort(nums.begin(),nums.end());
+        vector<vector<int>>ans;
+        return find(nums,ans,0);   
+    }
+};
