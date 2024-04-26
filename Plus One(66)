@@ -1,0 +1,28 @@
+class Solution {
+public:
+    vector<int> plusOne(vector<int>& digits) {
+        int i,j,carry=0;
+        i=digits.size()-1;
+        vector<int>v;
+        //last index
+        if(i==digits.size()-1){
+               v.push_back((digits[i]+1)%10);
+               carry=(digits[i]+1)/10;
+               i--;
+        }
+        while(i>=0){
+            v.push_back((digits[i]+carry)%10);
+            carry=(digits[i]+carry)/10;
+            i--;
+        }
+        if(carry){
+            v.push_back(carry);
+        }
+        // reverse
+        for(i=0,j=v.size()-1;i<j;i++){
+            swap(v[i],v[j]);
+            j--;
+        }
+        return v;
+    }
+};
