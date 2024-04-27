@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int calculate(string s, int k,vector<int>&ans){
+        int i,n,m,val,maximum=0;
+        int last;
+        for(i=0;i<s.size();i++){
+            n=k;
+            m=0;
+            last=s[i]-'a';
+            val=s[i]-'a';
+            while(n>0){
+                
+                if(val+n <26){
+                  m=max(m,ans[val+n]);
+                }
+                if(val-n >=0){
+                    m=max(m,ans[val-n]);
+                }
+                n--;
+            }
+            ans[val]=m+1;
+            maximum=max(maximum,ans[val]);
+        }
+      
+        return maximum;
+
+    }
+    int longestIdealString(string s, int k) {
+        vector<int> ans(27,0);
+        return calculate(s,k,ans);
+    }
+};
