@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int findMaxK(vector<int>& nums) {
+        int i,j;
+        i=0;
+        j=nums.size()-1;
+        sort(nums.begin(),nums.end(),greater<int>());
+        while(i<j){
+            if(nums[i]==abs(nums[j]) && nums[i]!=nums[j]){
+                return nums[i]; 
+            }
+            else if(nums[i]>abs(nums[j])){
+                i++;
+            }
+            else{
+                j--;
+            } 
+        }
+        return -1;
+    }
+};
