@@ -1,0 +1,35 @@
+class Solution {
+public:
+   
+    ListNode* removeNodes(ListNode* head) {
+        ListNode* prev=NULL;
+        ListNode* temp=head;
+        ListNode* forward=head;
+        stack<int> s;
+        while(temp!=NULL){
+            s.push(temp->val);
+            temp=temp->next;
+        }
+        temp=head;
+        temp->val=s.top();
+        s.pop();
+        while(!s.empty()){
+          if(s.top()>=temp->val){
+            temp->next->val=s.top();
+            temp=temp->next;
+          }
+          s.pop();
+        }
+        temp->next=NULL;
+        temp=head;
+        while(temp!=NULL){
+            forward=forward->next;
+            temp->next=prev;
+            prev=temp;
+            temp=forward;
+        }
+        return prev;
+
+        
+    }
+};
