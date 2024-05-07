@@ -1,0 +1,37 @@
+class Solution {
+public:
+    vector<int> pivotArray(vector<int>& nums, int pivot) {
+        int c1,c2,c3,i,j,k,l;
+        c1=c2=c3=0;
+        vector<int>ans(nums.size(),0);
+        for(i=0;i<nums.size();i++){
+            if(nums[i]<pivot){
+                c1++;
+            }
+            else if(nums[i]==pivot){
+                c2++;
+            }
+            else{
+                c3++;
+            }
+        }
+        j=0;
+        k=c1;
+        l=c1+c2;
+        for(i=0;i<nums.size();i++){
+            if(nums[i]<pivot){
+                ans[j]=nums[i];
+                j++;
+            }
+            else if(nums[i]==pivot){
+                ans[k]=nums[i];
+                k++;
+            }
+            else{
+                ans[l]=nums[i];
+                l++;
+            }
+        }
+        return ans;
+    }
+};
