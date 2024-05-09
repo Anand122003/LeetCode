@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int reverse(int x) {
+        int y,k,max;
+        max=INT_MAX;
+        k=0;
+        y=abs(x);
+        while(y!=0){
+            if(k!=0 && max/k <10 ){
+                return 0;
+            }
+            
+            k=k*10+ y%10;
+            
+            y=y/10;
+        }
+        if(x<0){
+            return -k;
+        }
+        return k;
+        // 964632435 * 10
+    }
+};
