@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int cal(vector<int>& nums,int val,int index,int &sum){
+        if(index==nums.size()){
+            sum=sum+val;
+            return sum;
+        }
+        val=val^nums[index];
+        cal(nums,val,index+1,sum);
+        val=val^nums[index];
+        cal(nums,val,index+1,sum);
+        return sum;
+    }
+    int subsetXORSum(vector<int>& nums) {
+       int sum=0;
+       return cal(nums,0,0,sum);//val,index,sum
+    }
+};
