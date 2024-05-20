@@ -1,0 +1,21 @@
+class Solution {
+public:
+    vector<vector<int>>ans;
+    vector<vector<int>> calculate(vector<int>nums,vector<int> subset,int index){
+        if(index==nums.size()){
+            ans.push_back(subset);
+            return ans;
+        }
+        subset.push_back(nums[index]);
+        calculate(nums,subset,index+1);
+        subset.pop_back();
+        calculate(nums,subset,index+1);
+        return ans;
+    }
+    vector<vector<int>> subsets(vector<int>& nums) {
+        int index=0;
+        vector<int> subset;
+        return calculate(nums,subset,index);
+
+    }
+};
