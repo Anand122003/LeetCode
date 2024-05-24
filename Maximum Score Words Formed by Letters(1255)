@@ -1,0 +1,55 @@
+
+class Solution {
+public:
+    vector<vector<string>> sub;
+    void calculateSub(vector<string>& words, vector<char>& letters, vector<int>& score,vector<string>stringPair,int index){
+        if(index==words.size()){
+            sub.push_back(stringPair);
+            return ;
+        }
+        stringPair.push_back(words[index]);
+        calculateSub(words,letters,score,stringPair,index+1);
+        stringPair.pop_back();
+        calculateSub(words,letters,score,stringPair,index+1);
+        return ;
+    }
+    int maxScoreWords(vector<string>& words, vector<char>& letters, vector<int>& score) {
+        int i,j,k,count,totalCount;
+        bool flag=true;
+        count=totalCount=0;
+        vector<string>stringPair;
+        calculateSub(words,letters,score,stringPair,0);
+        // creating letters map
+        unordered_map<char,int> m;
+        for(i=0;i<letters.size();i++){
+            m[letters[i]]++;
+        }
+        for(i=0;i<sub.size();i++){
+            count=0;
+            flag=true;
+            unordered_map<char,int> temp_m = m;
+            for(j=0;j<sub[i].size();j++){
+                for(k=0;k<sub[i][j].size();k++){
+                    char ch=sub[i][j][k];
+                    if( temp_m.find(ch)==temp_m.end()){
+                        flag=false;
+                        break;
+                    }
+                    else if(temp_m[ch]==0){
+                        flag=false;
+                        break;
+                    }
+                    else{
+                        count+=score[ch-'a'];
+                        temp_m[ch]--;
+                    }
+                }
+                if(!flag) break;
+            }
+            if(flag){
+               totalCount=max(totalCount,count);
+            }
+        }
+        return totalCount;
+    }
+};
