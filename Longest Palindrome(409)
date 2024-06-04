@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int longestPalindrome(string s) {
+        int i,count;
+        count=0;
+        unordered_map<char,int>m;
+        for(i=0;i<s.size();i++){
+            m[s[i]]++;
+            if(m[s[i]]%2==0){
+                count=count+2;
+                m.erase(s[i]);
+            }
+        }
+        if(m.size()>0){
+            count++;
+        }
+        return count;
+    }
+};
