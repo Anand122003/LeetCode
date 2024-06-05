@@ -1,0 +1,25 @@
+class Solution {
+public:
+    vector<string> commonChars(vector<string>& words) {
+        int i,j,k,count,minCount;
+        char c='a';
+        vector<string> ans;
+        for(k=0;k<26;k++){
+            minCount=INT_MAX;
+            for(i=0;i<words.size();i++){
+                count=0;
+                for(j=0;j<words[i].size();j++){
+                    if(words[i][j]==c){
+                        count++;
+                    }
+                }
+                minCount=min(minCount,count);
+            }
+            for(j=0;j<minCount;j++){
+                ans.push_back(string(1, c));
+            }
+            c++;
+        }
+        return ans;
+    }
+};
