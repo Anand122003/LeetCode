@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int subarraysDivByK(vector<int>& nums, int k) {
+        int count=0;
+        unordered_map<int,int>m;
+       
+        int sum=0;
+        for(int i=0;i<nums.size();i++){
+            // nums[i]=nums[i]+nums[i-1];
+            sum=(sum+nums[i]%k + k)%k;  // to avois negative reaminer, taker modulas two time
+            nums[i]=sum; 
+        }
+        int i=0;
+        m[0]=1;
+        while(i<nums.size()){
+            if(m.find(nums[i]%k)!=m.end()){
+                count=count + m[nums[i]%k];
+            }
+            m[nums[i]%k]++; 
+            i++;
+        }
+        return count;
+    }
+};
