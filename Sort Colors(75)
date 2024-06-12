@@ -1,0 +1,35 @@
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+        int i,red,white,blue;
+        red=white=blue=0;
+        for(int x:nums){
+            if(x==0){
+                red++;
+            }
+            else if(x==1){
+                white++;
+            }
+            else{
+                blue++;
+            }
+        }
+        i=0;
+        while(red!=0 || blue!=0 || white!=0){
+            if(red>0){
+                nums[i]=0;
+                red--;
+            }
+            else if(white>0){
+                nums[i]=1;
+                white--;
+            }
+            else{
+                nums[i]=2;
+                blue--;
+            }
+            i++;
+        }
+        return ;
+    }
+};
