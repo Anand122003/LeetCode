@@ -1,0 +1,19 @@
+class Solution {
+public:
+    bool judgeSquareSum(int c) {
+        long a,b;
+        b=0;
+        while(true){
+            a=c-(b*b);
+            if(a<0){
+                break;
+            }
+            int x=sqrt(a);
+            if((x*x)==a){
+                return true;
+            }
+            b++;
+        }
+        return false;
+    }
+};
