@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int minKBitFlips(vector<int>& nums, int k) {
+        int count,i,flip;
+        i=count=flip=0;
+        while(i<nums.size()){
+            if(i-k>=0 && nums[i-k]==2){
+                flip--;
+            }
+            if(nums[i]==flip%2){
+                if(i+k > nums.size()){
+                    return -1;
+                }
+                flip++;
+                count++;
+                nums[i]=2;
+            }
+            i++;
+        }
+        return count;
+    }
+};
