@@ -1,0 +1,54 @@
+class Solution {
+public:
+    vector<int> targetIndices(vector<int>& nums, int target) {
+        int low,high,mid;
+        sort(nums.begin(),nums.end());
+        low=0;
+        high=nums.size()-1;
+        int lowerI,upperI;
+        lowerI=INT_MIN;
+        upperI=INT_MIN;
+        // lower index
+        while(low<=high){
+            mid=low+(high-low)/2;
+            if(nums[mid]==target){
+                lowerI=mid;
+                high=mid-1;
+            }
+            else if(nums[mid]>target){
+                high=mid-1;
+            }
+            else{
+                low=mid+1;
+            }
+        }
+        low=0;
+        high=nums.size()-1;
+        // upper index
+        while(low<=high){
+            mid=low+(high-low)/2;
+            if(nums[mid]==target){
+                upperI=mid;
+                low=mid+1;
+            }
+            else if(nums[mid]>target){
+                high=mid-1;
+            }
+            else{
+                low=mid+1;
+            }
+        }
+        vector<int> ans;
+        if(lowerI==upperI){
+            if(lowerI != INT_MIN){
+             ans.push_back(lowerI);
+            }
+        }
+        else{
+            for(int i=lowerI;i<=upperI;i++){
+             ans.push_back(i);
+            }
+        }
+        return ans;
+    }
+};
