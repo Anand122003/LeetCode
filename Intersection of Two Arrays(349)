@@ -1,0 +1,39 @@
+class Solution {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+        sort(nums1.begin(),nums1.end());
+        sort(nums2.begin(),nums2.end());
+        int low,mid,high,target;
+        vector<int>ans;
+        int prev=-1;
+        for(int i=0;i<nums1.size();i++){
+            low=0;
+            high=nums2.size()-1;
+            mid=0;
+            if(nums1[i]==prev){
+               continue;
+            }
+            else{
+                prev=nums1[i];
+                target=nums1[i];
+            }
+
+            
+
+            while(low<=high){
+                mid=low+(high-low)/2;
+                if(nums2[mid]==target){
+                    ans.push_back(target);
+                    break;
+                }
+                else if(nums2[mid]>target){
+                    high=mid-1;
+                }
+                else{
+                    low=mid+1;
+                }
+            }
+        }
+        return ans;        
+    }
+};
