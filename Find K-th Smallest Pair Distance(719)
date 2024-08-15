@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int smallestDistancePair(vector<int>& nums, int k) {
+        // size of nums
+        int n=nums.size();
+        // sorting given input array
+        sort(nums.begin(),nums.end());
+        // initialising new array 
+        vector<int> distance(nums[n-1]-nums[0]+1,0);
+        for(int i=0;i<n-1;i++){
+            for(int j=i+1;j<n;j++){
+                distance[abs(nums[j]-nums[i])]++;
+            }
+        }
+        int sum=0;
+        for(int i=0;i<distance.size();i++){
+            sum+=distance[i];
+            if(sum>=k){
+                return i;
+            }
+        }
+        return 0;
+    }
+};
