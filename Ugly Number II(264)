@@ -1,0 +1,35 @@
+class Solution {
+public:
+    int nthUglyNumber(int n) {
+        vector<int> arr(n+1);
+        arr[0]=0;
+        arr[1]=1;
+        if(n==1){
+            return arr[1];
+        }
+        int i2,i3,i5;
+        i2=i3=i5=arr[1];
+
+        for(int i=2;i<=n;i++){
+            
+            int val2,val3,val5;
+            val2=2*arr[i2];
+            val3=3*arr[i3];
+            val5=5*arr[i5];
+             
+            int minimum=min({val2,val3,val5});
+            arr[i]=minimum;
+
+            if(minimum==val2){
+                i2++;
+            }
+            if(minimum==val3){
+                i3++;
+            }
+            if(minimum==val5){
+                i5++;
+            }
+        }
+        return arr[n];
+    }
+};
