@@ -1,0 +1,21 @@
+class Solution {
+public:
+    vector<vector<int>> construct2DArray(vector<int>& original, int m, int n) {
+        int s=m*n;
+        vector<vector<int>>D(m,vector<int>(n));
+        if( s!=original.size()){
+            return {};
+        }
+        int row,col;
+        row=col=0;
+        for(int i:original){
+            if(col==n){
+                row++;
+                col=0;
+            }
+            D[row][col]=i;
+            col++;
+        }
+        return D;
+   }
+};
