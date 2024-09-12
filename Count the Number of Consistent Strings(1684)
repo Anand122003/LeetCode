@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int countConsistentStrings(string allowed, vector<string>& words) {
+        unordered_map<char,int>um;
+        for(int i=0;i<allowed.size();i++){
+            um[allowed[i]]=1;
+        }
+        int count=0;
+        for(int i=0;i<words.size();i++){
+            int j=0;
+            for(j=0;j<words[i].size();j++){
+                if(um[words[i][j]]==0){
+                    break;
+                }
+            }
+            if(j==words[i].size()){
+                count++;
+            }
+        }
+        return count;
+    }
+};
