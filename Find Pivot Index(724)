@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int pivotIndex(vector<int>& nums) {
+        int i,n;
+        n=nums.size();
+        vector<int>pSum(n);
+        pSum[0]=nums[0];
+        for(i=1;i<n;i++){
+            pSum[i]=pSum[i-1]+nums[i];
+        }
+        int leftSum=0,rightSum=0,ans=-1;
+        // int rightSum=0;
+        // int ans=-1;
+        for(i=0;i<n;i++){
+            rightSum=pSum[n-1]-pSum[i];
+            if(rightSum==leftSum){
+                ans=i;
+                break;
+            }
+            leftSum=pSum[i];
+        }
+        return ans;
+    }
+};
