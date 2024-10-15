@@ -1,0 +1,23 @@
+class Solution {
+public:
+    long long minimumSteps(string s) {
+        long long count=0;
+        int i=0,j=1;
+        while(j<s.size()){
+            
+            if(s[i]=='1'){
+              while(j<s.size() && s[j]=='1'){
+                j++;
+              }
+              if(j==s.size()){
+                break;
+              }
+              count+=j-i;
+              swap(s[i],s[j]);
+            }
+            i++;
+            j++;
+        }
+        return count;
+    }
+};
