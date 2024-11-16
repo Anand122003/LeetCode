@@ -1,0 +1,21 @@
+class Solution {
+public:
+    vector<int> resultsArray(vector<int>& nums, int k) {
+        vector<int> result;
+        int val=-1;
+        for(int i=0;i<nums.size()-k+1;i++){
+            int j=i;
+            val=-1;
+            for(j=i;j<i+k-1;j++){
+                if(nums[j]+1!=nums[j+1]){
+                  break;
+                }
+            }
+            if(j==(i+k-1)){
+                val=nums[i+k-1];
+            }
+            result.push_back(val);
+        }
+        return result;
+    }
+};
