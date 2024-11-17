@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int shortestSubarray(vector<int>& nums, int k) {
+        int j=0,ans=INT_MAX;
+        deque<int>deq;
+        vector<long long> cumSum(nums.size(),0);
+        while(j<nums.size()){
+            if(j==0){
+               cumSum[j]=nums[j];
+            }
+            else{
+               cumSum[j]=cumSum[j-1]+nums[j];
+            }
+
+            if(cumSum[j]>=k){
+                ans=min(ans,j+1);
+            }
+
+            while(!deq.empty() && cumSum[j]-cumSum[deq.front()]>=k){
+                ans=min(ans,j-deq.front());
+                deq.pop_front();
+            }
+
+            while(!deq.empty() && cumSum[j]<=cumSum[deq.back()]){
+                deq.pop_back();
+            }
+            deq.push_back(j);
+            j++;
+        }
+        return ans==INT_MAX ? -1 : ans;
+    }
+};
